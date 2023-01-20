@@ -92,12 +92,26 @@
                                                             @endforeach
                                                         </ul>
                                                     </td>
-                                                    <td class="dtr-control sorting_1" tabindex="0"><a
-                                                            href="{{ url('admin/category/' . $cg->id . '/edit') }}">edit</a>
+                                                    <td class="dtr-control sorting_1" tabindex="0">
+                                                        <a href="{{ url('admin/category/' . $cg->id . '/edit') }}">edit</a>
+                                                        <form action="{{ route('category.destroy', $cg->id) }}"
+                                                            method="POST">
+                                                            {{ csrf_field() }}
+                                                            {{ method_field('DELETE') }}
+                                                            <input type="submit" value="Delete">
+                                                        </form>
+                                                        <a href="{{ url('admin/category/' . $cg->id . '/edit') }}">edit</a>
                                                         <ul>
-                                                            @foreach ($cg->children as $subc)
-                                                                <li><a
-                                                                        href="{{ url('admin/category/' . $cg->id . '/edit') }}">edit</a>
+                                                            @foreach ($cg->children as $sb)
+                                                                <li>
+                                                                    <a
+                                                                        href="{{ url('admin/category/' . $sb->id . '/edit') }}">edit</a>
+                                                                    <form action="{{ route('category.destroy', $sb->id) }}"
+                                                                        method="POST">
+                                                                        {{ csrf_field() }}
+                                                                        {{ method_field('DELETE') }}
+                                                                        <input type="submit" value="Delete">
+                                                                    </form>
                                                                 </li>
                                                             @endforeach
                                                         </ul>

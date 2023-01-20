@@ -7,19 +7,19 @@
         <div class="card">
             <img class="card-img-top" src="holder.js/100x180/" alt="">
             <div class="card-body">
-                <h4 class="card-title">Selamat Datang di halaman admin</h4>
+                <h4 class="text-bold">Tambah Barang</h4>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Quick Example</h3>
+                        <h1 class="card-title">Quick Example</h1>
                     </div>
 
 
                     <form action="{{ url('admin/category') }}" method="POST">
-                        {{ @csrf_field() }}
+                        {{ csrf_field() }}
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Name</label>
@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Parent Category</label>
                                 <select name="parent_id" id="" class="form-control">
-                                    <option value="">Select</option>
+                                    <option value="">Kategori Baru</option>
                                     @foreach ($categorys as $cg)
                                         <option value="{{ $cg->id }}">{{ $cg->name }}</option>
                                     @endforeach
@@ -74,7 +74,7 @@
                                                     Category</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
                                                     colspan="1"
-                                                    aria-label="Platform(s): activate to sort column ascending">Platform(s)
+                                                    aria-label="Platform(s): activate to sort column ascending">Action
                                                 </th>
                                             </tr>
                                         </thead>
@@ -84,7 +84,7 @@
                                             @endphp
                                             @foreach ($categorys as $cg)
                                                 <tr class="odd">
-                                                    <td>{{ $i++ }}</td>
+                                                    <td width="10px">{{ $i++ }}</td>
                                                     <td class="dtr-control sorting_1" tabindex="0"> {{ $cg->name }}
                                                         <ul>
                                                             @foreach ($cg->children as $subc)
@@ -93,28 +93,30 @@
                                                         </ul>
                                                     </td>
                                                     <td class="dtr-control sorting_1" tabindex="0">
-                                                        <a href="{{ url('admin/category/' . $cg->id . '/edit') }}">edit</a>
-                                                        <form action="{{ route('category.destroy', $cg->id) }}"
-                                                            method="POST">
-                                                            {{ csrf_field() }}
-                                                            {{ method_field('DELETE') }}
-                                                            <input type="submit" value="Delete">
-                                                        </form>
-                                                        <a href="{{ url('admin/category/' . $cg->id . '/edit') }}">edit</a>
-                                                        <ul>
+                                                        <div class="row">
+                                                            <div class="col-6 col-md-2">
+                                                                <a href="{{ url('admin/category/' . $cg->id . '/edit') }}" class="btn btn-primary btn-xs">Edit</a>
+                                                            </div>
+                                                            <form action="{{ route('category.destroy', $cg->id) }}"
+                                                                method="POST">
+                                                                {{ csrf_field() }}
+                                                                {{ method_field('DELETE') }}
+                                                                <input type="submit" class="btn btn-danger btn-xs" value="Delete">
+                                                            </form>
+                                                        </div>
                                                             @foreach ($cg->children as $sb)
-                                                                <li>
-                                                                    <a
-                                                                        href="{{ url('admin/category/' . $sb->id . '/edit') }}">edit</a>
-                                                                    <form action="{{ route('category.destroy', $sb->id) }}"
-                                                                        method="POST">
-                                                                        {{ csrf_field() }}
-                                                                        {{ method_field('DELETE') }}
-                                                                        <input type="submit" value="Delete">
-                                                                    </form>
-                                                                </li>
+                                                                    <div class="row">
+                                                                        <div class="col-6 col-md-2">
+                                                                            <a href="{{ url('admin/category/' . $sb->id . '/edit') }}" class="btn btn-primary btn-xs">Edit</a>
+                                                                        </div>
+                                                                        <form action="{{ route('category.destroy', $sb->id) }}"
+                                                                            method="POST">
+                                                                            {{ csrf_field() }}
+                                                                            {{ method_field('DELETE') }}
+                                                                            <input type="submit" class="btn btn-danger btn-xs" value="Delete">
+                                                                        </form>
+                                                                    </div>
                                                             @endforeach
-                                                        </ul>
                                                     </td>
                                                 </tr>
                                             @endforeach

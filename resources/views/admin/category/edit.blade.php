@@ -7,7 +7,18 @@
         <div class="card">
             <img class="card-img-top" src="holder.js/100x180/" alt="">
             <div class="card-body">
-                <h4 class="card-title">Selamat Datang di halaman admin</h4>
+                <div class="row">
+                    <div class="col-md-10 d-flex align-items-center">
+                        {{-- <div class="d-flex align-items-center"> --}}
+                            <h4 class="card-title">Edit</h4>
+                        {{-- </div> --}}
+                    </div>
+                    <div class="col-md-2">
+                        <div class="d-flex justify-content-end">
+                            <a href="{{ url('admin/category') }}"><button class="btn btn-primary">kemabali</button></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -54,10 +65,9 @@
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
-                        <div class="card-footer">
-                            <a href=""><button class="btn btn-primary">kemabali</button></a>
-                        </div>
                     </form>
+                    <div class="card-footer">
+                    </div>
                 </div>
             </div>
         </div>

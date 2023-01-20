@@ -52,7 +52,7 @@
                                 @endif
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
@@ -124,7 +124,7 @@
                             </div>
                         </div>
 
-                       
+
 
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
@@ -142,6 +142,7 @@
                                 {{-- <option value="admin">Admin</option> --}}
                                 <option value="member">Member</option>
                                 <option value="supplier">Supplier</option>
+                                <option value="admin">admin</option>
                                </select>
                                 @if ($errors->has('role'))
                                     <span class="invalid-feedback" role="alert">

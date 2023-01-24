@@ -5,7 +5,7 @@
 @section('body')
     <div class="container-fluid">
         <div class="card">
-            <img class="card-img-top" src="holder.js/100x180/" alt="">
+            <img class="card-img-top" src="" alt="">
             <div class="card-body">
                 <h4 class="text-bold">Tambah Barang</h4>
             </div>
@@ -25,16 +25,31 @@
                                 <label for="exampleInputEmail1">Name</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
                                     placeholder="Enter Category" name="name">
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Slug</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Slug"
                                     name="slug">
+                                @if ($errors->has('slug'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('slug') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Icon</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Icon"
                                     name="icon">
+                                @if ($errors->has('icon'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('icon') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Parent Category</label>
@@ -51,6 +66,8 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
+
+
                 </div>
             </div>
             <div class="col-md-6">
@@ -94,29 +111,33 @@
                                                     </td>
                                                     <td class="dtr-control sorting_1" tabindex="0">
                                                         <div class="row">
-                                                            <div class="col-6 col-md-2">
-                                                                <a href="{{ url('admin/category/' . $cg->id . '/edit') }}" class="btn btn-primary btn-xs">Edit</a>
+                                                            <div class="col-6 col-md-3">
+                                                                <a href="{{ url('admin/category/' . $cg->id . '/edit') }}"
+                                                                    class="btn btn-primary btn-xs">Edit</a>
                                                             </div>
                                                             <form action="{{ route('category.destroy', $cg->id) }}"
                                                                 method="POST">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('DELETE') }}
-                                                                <input type="submit" class="btn btn-danger btn-xs" value="Delete">
+                                                                <input type="submit" class="btn btn-danger btn-xs"
+                                                                    value="Delete">
                                                             </form>
                                                         </div>
-                                                            @foreach ($cg->children as $sb)
-                                                                    <div class="row">
-                                                                        <div class="col-6 col-md-2">
-                                                                            <a href="{{ url('admin/category/' . $sb->id . '/edit') }}" class="btn btn-primary btn-xs">Edit</a>
-                                                                        </div>
-                                                                        <form action="{{ route('category.destroy', $sb->id) }}"
-                                                                            method="POST">
-                                                                            {{ csrf_field() }}
-                                                                            {{ method_field('DELETE') }}
-                                                                            <input type="submit" class="btn btn-danger btn-xs" value="Delete">
-                                                                        </form>
-                                                                    </div>
-                                                            @endforeach
+                                                        @foreach ($cg->children as $sb)
+                                                            <div class="row">
+                                                                <div class="col-6 col-md-3">
+                                                                    <a href="{{ url('admin/category/' . $sb->id . '/edit') }}"
+                                                                        class="btn btn-primary btn-xs">Edit</a>
+                                                                </div>
+                                                                <form action="{{ route('category.destroy', $sb->id) }}"
+                                                                    method="POST">
+                                                                    {{ csrf_field() }}
+                                                                    {{ method_field('DELETE') }}
+                                                                    <input type="submit" class="btn btn-danger btn-xs"
+                                                                        value="Delete">
+                                                                </form>
+                                                            </div>
+                                                        @endforeach
                                                     </td>
                                                 </tr>
                                             @endforeach
